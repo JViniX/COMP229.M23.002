@@ -1,13 +1,17 @@
 // var hello;
 
 // hello = () => {
-//   document.getElementById("demo").innerHTML += this;
+//   document.getElementById("demo").innerHTML += "Hello world!"//this;
 // }
 
-// //The window object calls the function:
+// // function sayHello(){
+// //   console.log("Hello!");
+// // }
+
+// // //The window object calls the function:
 // window.addEventListener("load", hello);
 
-// //A button object calls the function:
+// // //A button object calls the function:
 // document.getElementById("btn").addEventListener("click", hello);
 
 
@@ -16,11 +20,12 @@
 // document.write(squares);
 
 // var evens = new Array();
-// numbers.forEach(n => {
+// numbers.forEach( n => {
 //    if (n % 2 === 0) { 
 //       evens.push(n);
 //    }
 // });
+// document.write("<br>");
 // document.write(evens);
 
 const author = {
