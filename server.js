@@ -9,27 +9,29 @@
 
 
 // Connect 
-const connect = require('connect');
-const app = connect();
+const express = require('express');
+const app = express();
 app.listen(3000);
 
-function logger(req, res, next){
-    console.log(req.method, req.url);
-    next();
-}
+// function logger(req, res, next){
+//     console.log(req.method, req.url);
+//     next();
+// }
 
 function helloWorld(req, res, next) {
-   res.setHeader('Content-Type', 'text/plain');
-   res.end('Hello World!');
+//    res.setHeader('Content-Type', 'text/plain');
+   res.send('Hello World!');
 };
 
 function goodbye(req, res, next) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Good bye!');
+    // res.setHeader('Content-Type', 'text/plain');
+    res.send('Good bye!');
  };
 
-app.use(logger);
+// app.use(logger);
 app.use('/hello', helloWorld);
 app.use('/goodbye', goodbye);
 
 console.log('Server running at http://localhost:3000/');
+
+module.exports = app;
