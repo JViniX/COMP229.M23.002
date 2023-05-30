@@ -1,6 +1,6 @@
 {
   "name": "comp229.m23.002",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -12,5 +12,23 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1"
-  }
+  },
+  "description": "COMP229 Code examples",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JViniX/COMP229.M23.002.git"
+  },
+  "keywords": [
+    "COMP229",
+    "NodeJS",
+    "Express",
+    "MongoDB"
+  ],
+  "author": "Julio Vinicius",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JViniX/COMP229.M23.002/issues"
+  },
+  "homepage": "https://github.com/JViniX/COMP229.M23.002#readme"
 }
