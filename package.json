@@ -11,10 +11,10 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "mongoose": "^7.2.2",
     "morgan": "~1.9.1"
   },
   "description": "COMP229 Code examples",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JViniX/COMP229.M23.002.git"
