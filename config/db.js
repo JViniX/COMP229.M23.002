@@ -2,7 +2,7 @@
 let atlasDB = "mongodb+srv://dbadmin:CURP3HVIc22vm9bu@clustercomp229.0pybih5.mongodb.net/products";
 
 // Database setup
-const { default : mongoose } = require('mongoose');
+const mongoose = require('mongoose');
 
 module.exports = function(){
 

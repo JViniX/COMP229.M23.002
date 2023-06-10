@@ -1,0 +1,40 @@
+<%- include ../partials/header.ejs %>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="row">
+        <h1><%= title %></h1>
+        <br>
+  
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <!-- Header Row-->
+                <tr>
+                    <th class="text-center">Item</th>
+                    <th class="text-center">Qty</th>
+                    <th class="text-center">Status</th>
+                    <th>Size</th>
+                    <th class="text-center">Tags</th>
+                </tr>
+
+                <!-- Repeatable Template Row -->
+
+                <% for(let count = 0; count < InventoryList.length; count++) { %>
+                    <tr>
+                        <td class="text-center"><%= InventoryList[count].item %></td>
+                        <td class="text-center"><%= InventoryList[count].qty %></td>
+                        <td class="text-center"><%= InventoryList[count].status %></td>
+                        <td>
+                            Hight: <%= InventoryList[count].size.h %><br/>
+                            Width: <%= InventoryList[count].size.w %><br/>
+                            UOM: <%= InventoryList[count].size.uom %><br/>
+                        </td>
+                        <td class="text-center"><%= InventoryList[count].tags %></td>
+                        
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+    </div>
+  </main>
+<%- include ../partials/footer.ejs %>
