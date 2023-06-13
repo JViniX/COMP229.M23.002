@@ -15,6 +15,7 @@
                     <th class="text-center">Status</th>
                     <th>Size</th>
                     <th class="text-center">Tags</th>
+                    <th class="text-center" colspan="2">Actions</th>
                 </tr>
 
                 <!-- Repeatable Template Row -->
@@ -30,7 +31,14 @@
                             UOM: <%= InventoryList[count].size.uom %><br/>
                         </td>
                         <td class="text-center"><%= InventoryList[count].tags %></td>
-                        
+                        <td class="text-center">
+                            <a href="/inventory/edit/<%= InventoryList[count]._id %>" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="/inventory/delete/<%= InventoryList[count]._id %>" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i></a>
+                        </td>
                     </tr>
                 <% } %>
             </table>
