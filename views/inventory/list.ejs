@@ -5,7 +5,13 @@
     <div class="row">
         <h1><%= title %></h1>
         <br>
-  
+        <div>
+            <a href="/inventory/add" class="btn btn-primary align-self-end" role="button">
+                <i class="fas fa-plus-circle"></i> 
+                Add a new Item
+            </a>
+        </div>
+        <br>
         <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover">
                 <!-- Header Row-->
@@ -36,7 +42,8 @@
                             <i class="fas fa-pencil-alt"></i></a>
                         </td>
                         <td class="text-center">
-                            <a href="/inventory/delete/<%= InventoryList[count]._id %>" class="btn btn-danger btn-sm">
+                            <a href="/inventory/delete/<%= InventoryList[count]._id %>" class="btn btn-danger btn-sm" 
+                                onclick="return confirm('Are you sure?')">
                             <i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
