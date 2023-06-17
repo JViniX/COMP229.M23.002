@@ -13,6 +13,7 @@ module.exports.invetoryList = async function (req, res, next) {
             });
     } catch (error) {
         console.log(error);
+        next(error);
     }
 
 }
@@ -101,7 +102,7 @@ module.exports.processEditPage = async (req, res, next) => {
         console.log(result);
 
         // If the product is updated redirects to the list
-        if (result.acknowledged === true) {
+        if (result.modifiedCount > 0) {
             res.redirect('/inventory/list');
         }
         else {
@@ -124,7 +125,7 @@ module.exports.performDelete = async (req, res, next) => {
         let result = await InventoryModel.deleteOne({ _id: id });
 
         console.log("====> Result: ", result);
-        if (result.acknowledged === true) {
+        if (result.deletedCount > 0) {
             // refresh the book list
             res.redirect('/inventory/list');
         }
