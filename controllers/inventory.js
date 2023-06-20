@@ -9,7 +9,8 @@ module.exports.invetoryList = async function (req, res, next) {
         res.render('inventory/list',
             {
                 title: 'Inventory List',
-                InventoryList: list
+                InventoryList: list,
+                userName: req.user ? req.user.username : ''
             });
     } catch (error) {
         console.log(error);
@@ -25,7 +26,8 @@ module.exports.displayAddPage = async function (req, res, next) {
     res.render('inventory/add_edit',
         {
             title: 'Add a new Item',
-            product: blankProduct
+            product: blankProduct,
+            userName: req.user ? req.user.username : ''
         });
 
 }
@@ -69,7 +71,8 @@ module.exports.displayEditPage = async (req, res, next) => {
         res.render('inventory/add_edit',
             {
                 title: 'Edit a new Item',
-                product: productToEdit
+                product: productToEdit,
+                userName: req.user ? req.user.username : ''
             });
     } catch (error) {
         console.log(error);
