@@ -7,6 +7,6 @@ router.get('/', indexController.home);
 
 
 /* GET home page. */
-router.get('/about', indexController.about );
+// router.get('/about', indexController.about );
 
 module.exports = router;

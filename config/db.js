@@ -1,12 +1,12 @@
 // Do not expose your credentials in your code.
-let atlasDB = "mongodb+srv://dbadmin:CURP3HVIc22vm9bu@clustercomp229.0pybih5.mongodb.net/products";
+let config = require('./config');
 
 // Database setup
 const mongoose = require('mongoose');
 
 module.exports = function(){
 
-    mongoose.connect(atlasDB);
+    mongoose.connect(config.ATLASDB);
 
     let mongodb = mongoose.connection;
 
