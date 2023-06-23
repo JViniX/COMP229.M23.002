@@ -6,12 +6,13 @@ module.exports.invetoryList = async function (req, res, next) {
         let list = await InventoryModel.find({});
         // console.log(list);
         // res.send(list);
-        res.render('inventory/list',
-            {
-                title: 'Inventory List',
-                InventoryList: list,
-                userName: req.user ? req.user.username : ''
-            });
+        // res.render('inventory/list',
+        //     {
+        //         title: 'Inventory List',
+        //         InventoryList: list,
+        //         userName: req.user ? req.user.username : ''
+        //     });
+        res.json(list);
     } catch (error) {
         console.log(error);
         next(error);
@@ -20,17 +21,17 @@ module.exports.invetoryList = async function (req, res, next) {
 }
 
 // Render the Add page using add_edit template
-module.exports.displayAddPage = async function (req, res, next) {
-    let blankProduct = InventoryModel();
+// module.exports.displayAddPage = async function (req, res, next) {
+//     let blankProduct = InventoryModel();
 
-    res.render('inventory/add_edit',
-        {
-            title: 'Add a new Item',
-            product: blankProduct,
-            userName: req.user ? req.user.username : ''
-        });
+//     res.render('inventory/add_edit',
+//         {
+//             title: 'Add a new Item',
+//             product: blankProduct,
+//             userName: req.user ? req.user.username : ''
+//         });
 
-}
+// }
 
 module.exports.processAddPage = async (req, res, next) => {
     try {
@@ -41,9 +42,9 @@ module.exports.processAddPage = async (req, res, next) => {
             qty: req.body.qty,
             status: req.body.status,
             size: {
-                h: req.body.size_h,
-                w: req.body.size_w,
-                uom: req.body.size_uom,
+                h: req.body.size.h,
+                w: req.body.size.w,
+                uom: req.body.size.uom
             },
             tags: req.body.tags.split(",").map(word => word.trim())
         });
@@ -52,7 +53,8 @@ module.exports.processAddPage = async (req, res, next) => {
 
         // refresh the book list
         console.log(result);
-        res.redirect('/inventory/list');
+        // res.redirect('/inventory/list');
+        res.json(result);
 
     } catch (error) {
         console.log(error);
@@ -61,41 +63,41 @@ module.exports.processAddPage = async (req, res, next) => {
 }
 
 // Render the Edit page using add_edit template
-module.exports.displayEditPage = async (req, res, next) => {
+// module.exports.displayEditPage = async (req, res, next) => {
 
-    try {
-        let id = req.params.id;
+//     try {
+//         let id = req.params.id;
 
-        let productToEdit = await InventoryModel.findById(id);
+//         let productToEdit = await InventoryModel.findById(id);
 
-        res.render('inventory/add_edit',
-            {
-                title: 'Edit a new Item',
-                product: productToEdit,
-                userName: req.user ? req.user.username : ''
-            });
-    } catch (error) {
-        console.log(error);
-        next(error);
-    }
-}
+//         res.render('inventory/add_edit',
+//             {
+//                 title: 'Edit a new Item',
+//                 product: productToEdit,
+//                 userName: req.user ? req.user.username : ''
+//             });
+//     } catch (error) {
+//         console.log(error);
+//         next(error);
+//     }
+// }
 
 
 module.exports.processEditPage = async (req, res, next) => {
     try {
 
-        let id = req.params.id
+        let id = req.params.id;
 
         // Builds updatedProduct from the values of the body of the request.
         let updatedProduct = InventoryModel({
-            _id: req.body.id,
+            _id: req.params.id,
             item: req.body.item,
             qty: req.body.qty,
             status: req.body.status,
             size: {
-                h: req.body.size_h,
-                w: req.body.size_w,
-                uom: req.body.size_uom,
+                h: req.body.size.h,
+                w: req.body.size.w,
+                uom: req.body.size.uom
             },
             tags: req.body.tags.split(",").map(word => word.trim())
         });
@@ -106,11 +108,17 @@ module.exports.processEditPage = async (req, res, next) => {
 
         // If the product is updated redirects to the list
         if (result.modifiedCount > 0) {
-            res.redirect('/inventory/list');
+            // res.redirect('/inventory/list');
+            res.json(
+                {
+                    success: true,
+                    message: "Item updated sucessfully."
+                }
+            );
         }
         else {
             // Express will catch this on its own.
-            throw new Error('Item not udated. Are you sure it exists?') 
+            throw new Error('Item not udated. Are you sure it exists?')
         }
 
     } catch (error) {
@@ -130,11 +138,17 @@ module.exports.performDelete = async (req, res, next) => {
         console.log("====> Result: ", result);
         if (result.deletedCount > 0) {
             // refresh the book list
-            res.redirect('/inventory/list');
+            // res.redirect('/inventory/list');
+            res.json(
+                {
+                    success: true,
+                    message: "Item deleted sucessfully."
+                }
+            )
         }
         else {
             // Express will catch this on its own.
-            throw new Error('Item not deleted. Are you sure it exists?') 
+            throw new Error('Item not deleted. Are you sure it exists?')
         }
 
     } catch (error) {
