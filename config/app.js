@@ -8,12 +8,21 @@ var logger = require('morgan');
 // let flash = require('connect-flash');
 let passport = require('passport');
 
+let cors = require('cors');
+let compression = require('compression');
+
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
 var inventoryRouter = require('../routes/inventory');
 
 var app = express();
 
+// Enables cors.
+app.use(cors());
+app.options('*', cors());
+
+// Enable Compression
+app.use(compression());
 // Enable sessoions
 // app.use(session({
 //   saveUninitialized: true,
