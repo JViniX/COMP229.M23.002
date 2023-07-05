@@ -26,28 +26,6 @@ function getErrorMessage(err) {
     return message;
   };
 
-// helper function for guard purposes
-module.exports.requireAuth = function(req, res, next)
-{
-    passport.authenticate('tokencheck', { session: false }, function(err, payload, info) {
-        if (err) return res.status(401).json(
-          { 
-            success: false, 
-            message: getErrorMessage(err)
-          }
-        );
-        if (info) return res.status(401).json(
-          { 
-            success: false, 
-            message: info.message
-          }
-        );
-        // if (!user) throw new AuthError('401', 'User is not authenticated.');
-        // console.log(user);
-        req.payload = payload;
-        next();
-      })(req, res, next);
-}
 // module.exports.renderSignin = function (req, res, next) {
 //     if (!req.user) {
 //         res.render('auth/signin', {
