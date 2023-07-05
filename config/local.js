@@ -48,7 +48,7 @@ module.exports = () => {
                 async (token, done) => {
                     try {
                         console.log(token);
-                        return done(null, token.payload);
+                        return done(null, token);
                     } catch (error) {
                         console.log(error);
                         done(error);

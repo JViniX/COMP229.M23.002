@@ -35,7 +35,7 @@ module.exports.invetoryList = async function (req, res, next) {
 
 module.exports.processAddPage = async (req, res, next) => {
     try {
-
+        console.log("req.payload: ", req.payload);
         let newProduct = InventoryModel({
             _id: req.body.id,
             item: req.body.item,
@@ -46,7 +46,8 @@ module.exports.processAddPage = async (req, res, next) => {
                 w: req.body.size.w,
                 uom: req.body.size.uom
             },
-            tags: req.body.tags.split(",").map(word => word.trim())
+            tags: req.body.tags.split(",").map(word => word.trim()),
+            owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner
         });
 
         let result = await InventoryModel.create(newProduct)
@@ -99,7 +100,8 @@ module.exports.processEditPage = async (req, res, next) => {
                 w: req.body.size.w,
                 uom: req.body.size.uom
             },
-            tags: req.body.tags.split(",").map(word => word.trim())
+            tags: req.body.tags.split(",").map(word => word.trim()),
+            owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner
         });
 
         // Submits updatedProduct to the DB and waits for a result.
